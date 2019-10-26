@@ -1,0 +1,50 @@
+
+
+template <typename T>class Base
+ {
+   public:
+    int d;
+};
+template <typename T>class Derived : public Base<T>
+ {
+    void f () 
+   {
+        this->d = 0;
+    }
+};
+
+
+template <typename T>class Derived : public Base<T> 
+{
+    using Base::d;
+    void f () {
+        d = 0;
+    }
+};
+
+
+
+template <typename T, typename Cleanup = QScopedPointerArrayDeleter<T> >class QScopedArrayPointer : public QScopedPointer<T, Cleanup>
+
+
+inline T &operator[](int i){
+    return this->d[i];}
+
+
+class Base0 {public:
+    int nd;};template <typename T>class Derived2 : 
+        public Base0, // non-dependent base
+        public Base<T> { // dependent base
+    void f () {
+        nd; // Base0::b
+        d; // lookup of "d" finds nothing
+
+        f (this); // lookup of "f" finds nothing
+                  // will find "f" later
+    }};
+
+
+
+
+
+
